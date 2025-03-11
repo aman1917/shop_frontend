@@ -36,6 +36,11 @@ const Dashboard = () => {
       };
 
       const response = await fetch(`${baseUrl}/products`, requestOptions);
+      if (!response.ok) {
+        // The request failed with a status code outside the 200-299 range
+        console.log(`Request failed with status: ${response.status}`);
+        return false; // or handle failure in some way
+      }
       const result = await response.json();
 
       if (result.status) {
